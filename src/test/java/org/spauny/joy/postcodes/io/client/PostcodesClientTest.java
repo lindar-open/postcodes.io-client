@@ -1,22 +1,23 @@
 package org.spauny.joy.postcodes.io.client;
 
-import org.spauny.joy.postcodes.io.client.PostcodesClient;
 import java.util.List;
-import org.spauny.joy.postcodes.io.vo.Geolocation;
-import org.spauny.joy.postcodes.io.vo.MultiResponse;
-import org.spauny.joy.postcodes.io.vo.PostcodeVO;
-import org.spauny.joy.postcodes.io.vo.Response;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.spauny.joy.postcodes.io.vo.Geolocation;
+import org.spauny.joy.postcodes.io.vo.MultiResponse;
+import org.spauny.joy.postcodes.io.vo.PostcodeVO;
+import org.spauny.joy.postcodes.io.vo.Response;
 
 /**
  *
  * @author iulian
  */
+@Ignore
 public class PostcodesClientTest {
     
     public PostcodesClientTest() {
