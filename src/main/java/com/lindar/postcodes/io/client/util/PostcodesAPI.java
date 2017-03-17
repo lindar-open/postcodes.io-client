@@ -1,4 +1,4 @@
-package org.spauny.joy.postcodes.io.util;
+package com.lindar.postcodes.io.client.util;
 
 import org.apache.commons.lang3.StringUtils;
 

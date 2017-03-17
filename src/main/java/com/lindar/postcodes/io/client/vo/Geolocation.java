@@ -1,4 +1,4 @@
-package org.spauny.joy.postcodes.io.vo;
+package com.lindar.postcodes.io.client.vo;
 
 import java.io.Serializable;
 import lombok.Data;

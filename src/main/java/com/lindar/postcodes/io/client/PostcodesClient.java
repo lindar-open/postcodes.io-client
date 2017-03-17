@@ -1,19 +1,17 @@
-package org.spauny.joy.postcodes.io.client;
+package com.lindar.postcodes.io.client;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import java.util.Arrays;
+import com.google.gson.reflect.TypeToken;
+import com.lindar.wellrested.WellRestedRequest;
+import com.lindar.wellrested.vo.ResponseVO;
 import java.util.List;
-import org.spauny.joy.postcodes.io.util.PostcodesAPI;
-import org.spauny.joy.postcodes.io.vo.Geolocation;
-import org.spauny.joy.postcodes.io.vo.Geolocations;
-import org.spauny.joy.postcodes.io.vo.MultiResponse;
-import org.spauny.joy.postcodes.io.vo.PostcodeVO;
-import org.spauny.joy.postcodes.io.vo.Response;
 import org.apache.commons.lang3.StringUtils;
-import org.spauny.joy.wellrested.request.AbstractRequestProcessor;
-import org.spauny.joy.wellrested.request.HttpRequestProcessor;
-import org.spauny.joy.wellrested.vo.ResponseVO;
+import com.lindar.postcodes.io.client.util.PostcodesAPI;
+import com.lindar.postcodes.io.client.vo.Geolocation;
+import com.lindar.postcodes.io.client.vo.Geolocations;
+import com.lindar.postcodes.io.client.vo.MultiResponse;
+import com.lindar.postcodes.io.client.vo.PostcodeVO;
+import com.lindar.postcodes.io.client.vo.Response;
 
 /**
  *
@@ -96,11 +94,10 @@ public class PostcodesClient {
      * @return
      */
     public Response<List<MultiResponse<Geolocation, PostcodeVO>>> bulkReverseGeocoding(List<Geolocation> geolocations) {
-        AbstractRequestProcessor requestProcessor = new HttpRequestProcessor(API.BULK_REVERSE_GEOCODING);
         Geolocations geolocationsObj = new Geolocations();
         geolocationsObj.setGeolocations(geolocations);
 
-        ResponseVO serverResponse = requestProcessor.processPostRequest(geolocationsObj);
+        ResponseVO serverResponse = WellRestedRequest.build(API.BULK_REVERSE_GEOCODING).post(geolocationsObj);
 
         return getResponseFromServerResponse(serverResponse);
     }
@@ -292,17 +289,13 @@ public class PostcodesClient {
     }
 
     private <T> Response<T> processGetRequestAndReturnResponse(String url) {
-        AbstractRequestProcessor requestProcessor = new HttpRequestProcessor(url);
-
-        ResponseVO serverResponse = requestProcessor.processGetRequest();
+        ResponseVO serverResponse = WellRestedRequest.build(url).get();
 
         return getResponseFromServerResponse(serverResponse);
     }
 
     private <T> Response<T> processPostRequestAndReturnResponse(String url, String json) {
-        AbstractRequestProcessor requestProcessor = new HttpRequestProcessor(url);
-
-        ResponseVO serverResponse = requestProcessor.processPostRequest(json);
+        ResponseVO serverResponse = WellRestedRequest.build(url).post(json);
 
         return getResponseFromServerResponse(serverResponse);
     }
@@ -320,11 +313,4 @@ public class PostcodesClient {
         return response;
     }
 
-    public static void main(String[] args) {
-        PostcodesClient postcodesClient = new PostcodesClient();
-        System.out.println(postcodesClient.lookupPostcode("SE61TZ"));
-        System.out.println(postcodesClient.nearestPostcodesFor(-2.30283674284007, 53.4556572899372));
-        System.out.println("****************************************************");
-        System.out.println(postcodesClient.bulkPostcodeLookup(Arrays.asList("OX49 5NU", "M32 0JG", "NE30 1DP")));
-    }
 }

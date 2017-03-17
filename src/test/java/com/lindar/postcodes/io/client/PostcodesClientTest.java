@@ -1,5 +1,6 @@
-package org.spauny.joy.postcodes.io.client;
+package com.lindar.postcodes.io.client;
 
+import com.lindar.postcodes.io.client.PostcodesClient;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -8,10 +9,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.spauny.joy.postcodes.io.vo.Geolocation;
-import org.spauny.joy.postcodes.io.vo.MultiResponse;
-import org.spauny.joy.postcodes.io.vo.PostcodeVO;
-import org.spauny.joy.postcodes.io.vo.Response;
+import com.lindar.postcodes.io.client.vo.Geolocation;
+import com.lindar.postcodes.io.client.vo.MultiResponse;
+import com.lindar.postcodes.io.client.vo.PostcodeVO;
+import com.lindar.postcodes.io.client.vo.Response;
 
 /**
  *
@@ -322,16 +323,4 @@ public class PostcodesClientTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of main method, of class PostcodesClient.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        PostcodesClient.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
